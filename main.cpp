@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
-
+#include <limits>
 using namespace std;
 
 // Base class Shape
@@ -20,7 +20,13 @@ private:
 public:
     void create() override {
         cout << "Enter radius of the circle: ";
-        cin >> radius;
+        while(!(cin>>radius)){
+            cin.clear();
+            cin.ignore(std::numeric_limits<streamsize>::max(),'\n');
+            cout<<"Input invalid, please try again.";
+
+        }
+
     }
 
     void print() const override {
@@ -36,7 +42,12 @@ private:
 public:
     void create() override {
         cout << "Enter side length of the square: ";
-        cin >> side;
+        while(!(cin>>side)){
+            cin.clear();
+            cin.ignore(std::numeric_limits<streamsize>::max(),'\n');
+            cout<<"Input invalid, please try again.";
+
+        }
     }
 
     void print() const override {
@@ -51,9 +62,19 @@ private:
 public:
     void create() override{
         cout<<"Enter height of the Rectangle: ";
-        cin>>height;
+        while(!(cin>>height)){
+            cin.clear();
+            cin.ignore(std::numeric_limits<streamsize>::max(),'\n');
+            cout<<"Input invalid, please try again.";
+
+        }
         cout<<"Enter width of the Rectangle: ";
-        cin>>width;
+        while(!(cin>>width)){
+            cin.clear();
+            cin.ignore(std::numeric_limits<streamsize>::max(),'\n');
+            cout<<"Input invalid, please try again.";
+
+        }
     }
     void print() const override{
         cout<<"Rectangle with height: "<<height<<" and width: "<<width<<endl;
@@ -92,9 +113,9 @@ int main() {
             cin >> shapeChoice;
 
             if (shapeChoice == 1) {
-                unique_ptr<Shape> circle = make_unique<Circle>();
+                unique_ptr<Shape>circle = make_unique<Circle>();
                 circle->create();
-                shapes.push_back(move(circle));
+                shapes.push_back(std::move(circle));
             } else if (shapeChoice == 2) {
                 unique_ptr<Shape> square = make_unique<Square>();
                 square->create();
