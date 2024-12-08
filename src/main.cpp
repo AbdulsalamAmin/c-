@@ -21,6 +21,10 @@ int main() {
         cout << "4. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
+        if(cin.fail()){
+            cin.clear();
+            cin.ignore(std::numeric_limits<streamsize>::max(),'\n');
+        }
 
         switch (choice) {
         case 1:
