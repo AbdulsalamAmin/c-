@@ -1,19 +1,18 @@
 #include "../include/square.h"
 #include <iostream>
 #include <limits>
-using namespace std;
 
 
 void Square::create() {
-    cout << "Enter side length of the square: ";
-    while(!(cin>>side)){
-        cin.clear();
-        cin.ignore(std::numeric_limits<streamsize>::max(),'\n');
-        cout<<"Input invalid, please try again.";
+    std::cout << "Enter side length of the square: ";
+    while(!(std::cin>>side)){
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        std::cout<<"Input invalid, please try again.";
 
     }
 }
 
 void Square::print() const  {
-    cout << "Square with side length: " << side << endl;
+    std::cout << "Square with side length: " << side << std::endl;
 }

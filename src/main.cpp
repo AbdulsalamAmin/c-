@@ -5,73 +5,72 @@
 #include "../include/circle.h"
 #include "../include/square.h"
 #include "../include/rectangle.h"
-using namespace std;
 
 int main() {
     // unique_ptr for memory management of shape
-    vector<unique_ptr<Shape>> shapes;
+    std::vector<std::unique_ptr<Shape>> shapes;
     int choice = 0;
 
     // Main Loop for Displaying menu
     while(choice != 4){
-        cout << "\nMenu:\n";
-        cout << "1. Show shape list\n";
-        cout << "2. Create shape\n";
-        cout << "3. Print existing shapes\n";
-        cout << "4. Exit\n";
-        cout << "Enter your choice: ";
-        cin >> choice;
-        if(cin.fail()){
-            cin.clear();
-            cin.ignore(std::numeric_limits<streamsize>::max(),'\n');
+        std::cout << "\nMenu:\n";
+        std::cout << "1. Show shape list\n";
+        std::cout << "2. Create shape\n";
+        std::cout << "3. Print existing shapes\n";
+        std::cout << "4. Exit\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+        if(std::cin.fail()){
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         }
 
         switch (choice) {
         case 1:
-            cout << "Shapes available:\n";
-            cout << "1. Circle\n";
-            cout << "2. Square\n";
-            cout << "3. Rectangle\n";
+            std::cout << "Shapes available:\n";
+            std::cout << "1. Circle\n";
+            std::cout << "2. Square\n";
+            std::cout << "3. Rectangle\n";
             break;
         case 2: {
             int shapeChoice;
-            cout << "Select a shape to create:\n";
-            cout << "1. Circle\n";
-            cout << "2. Square\n";
-            cout << "3. Rectangle\n";
-            cin >> shapeChoice;
+            std::cout << "Select a shape to create:\n";
+            std::cout << "1. Circle\n";
+            std::cout << "2. Square\n";
+            std::cout << "3. Rectangle\n";
+            std::cin >> shapeChoice;
 
             if (shapeChoice == 1) {
-                unique_ptr<Shape>circle = make_unique<Circle>();
+                std::unique_ptr<Shape>circle = std::make_unique<Circle>();
                 circle->create();
                 shapes.push_back(std::move(circle));
             } else if (shapeChoice == 2) {
-                unique_ptr<Shape> square = make_unique<Square>();
+                std::unique_ptr<Shape> square = std::make_unique<Square>();
                 square->create();
-                shapes.push_back(move(square));
+                shapes.push_back(std::move(square));
             } else if (shapeChoice == 3) {
-                unique_ptr<Shape> rectangle = make_unique<Rectangle>();
+                std::unique_ptr<Shape> rectangle = std::make_unique<Rectangle>();
                 rectangle->create();
-                shapes.push_back(move(rectangle));
+                shapes.push_back(std::move(rectangle));
             } else {
-                cout << "Invalid choice!\n";
+                std::cout << "Invalid choice!\n";
             }
             break;
         }
         case 3:
             // printing the details all existing shapes
-            cout << "Existing shapes:\n";
+            std::cout << "Existing shapes:\n";
             for (const auto& shape : shapes) {
                 shape->print();
             }
             break;
         case 4:
             // existing the program
-            cout << "Exiting...\n";
+            std::cout << "Exiting...\n";
             break;
         default:
             // handling invalid choice
-            cout << "Invalid choice! Please try again.\n";
+            std::cout << "Invalid choice! Please try again.\n";
         }
     };
 
