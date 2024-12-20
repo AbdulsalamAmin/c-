@@ -8,6 +8,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 add_executable(tamrin2 src/main.cpp
 src/circle.cpp src/rectangle.cpp src/square.cpp
+include/circle.h include/rectangle.h include/square.h
 
 
 )
